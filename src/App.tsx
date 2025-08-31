@@ -3,7 +3,7 @@ import Header from "./components/layout/Header"
 import Footer from "./components/layout/Footer"
 import HomePage from "./pages/HomePage"
 import CalculatorsPage from "./pages/CalculatorsPage"
-// import BlogsPage from "./pages/BlogsPage"
+import BlogsPage from "./pages/BlogsPage"
 import TrackApplicationPage from "./pages/TrackApplicationPage"
 // import BlogDetailPage from "./pages/BlogDetailPage"
 import AboutPage from "./pages/AboutPage"
@@ -17,7 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/calculators" element={<CalculatorsPage />} />
-          {/* <Route path="/blogs" element={<BlogsPage />} /> */}
+          <Route path="/blogs" element={<BlogsPage />} />
           {/* <Route path="/blogs/:slug" element={<BlogDetailPage />} /> */}
           <Route path="/track-application" element={<TrackApplicationPage />} />
           <Route path="/about-us" element={<AboutPage />} />

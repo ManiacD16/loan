@@ -1,11 +1,11 @@
 // "use client"
 
-// import { Link, useParams } from "react-router-dom"
+// import { Link } from "react-router-dom" //useParams
 // import { BLOG_POSTS } from "../components/data/blogs"
 
-// export default function BlogDetailPage() {
-//   const { slug } = useParams()
-//   const post = BLOG_POSTS.find((p: any) => p.slug === slug)
+export default function BlogDetailPage() {
+// //   const { slug } = useParams()
+//   const post = BLOG_POSTS.find((p: any)=>) //  p.slug === slug
 
 //   if (!post) {
 //     return (
@@ -67,4 +67,4 @@
 //       </div>
 //     </article>
 //   )
-// }
+}
