@@ -5,7 +5,7 @@ import HomePage from "./pages/HomePage"
 import CalculatorsPage from "./pages/CalculatorsPage"
 import BlogsPage from "./pages/BlogsPage"
 import TrackApplicationPage from "./pages/TrackApplicationPage"
-import BlogDetailPage from "./pages/BlogDetailPage"
+// import BlogDetailPage from "./pages/BlogDetailPage"
 import AboutPage from "./pages/AboutPage"
 import ContactPage from "./pages/ContactPage"
 
@@ -18,7 +18,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/calculators" element={<CalculatorsPage />} />
           <Route path="/blogs" element={<BlogsPage />} />
-          <Route path="/blogs/:slug" element={<BlogDetailPage />} />
+          {/* <Route path="/blogs/:slug" element={<BlogDetailPage />} /> */}
           <Route path="/track-application" element={<TrackApplicationPage />} />
           <Route path="/about-us" element={<AboutPage />} />
           <Route path="/contact-us" element={<ContactPage />} />
