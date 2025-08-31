@@ -3,9 +3,6 @@
 import React, { useMemo, useState } from "react";
 import { ArrowRight, ArrowLeft } from "lucide-react"
 
-// BASIC Home Loan — Requirements replica (pixel-close to screenshot)
-// Next.js + Tailwind. Light card on right, hero copy on left, pill segments,
-// underline inputs, custom sliders, ₹ formatting, and 4-step flow after NEXT.
 
 // Helpers — INR formatting & digit parsing
 const onlyDigits = (v: string) => (v || "").replace(/[^0-9]/g, "");
