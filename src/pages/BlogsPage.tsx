@@ -1,101 +1,113 @@
-const BlogsPage = () => {
-  const blogs = [
-    {
-      id: 1,
-      title: "Home Loan Interest Rates: What You Need to Know in 2024",
-      excerpt: "Understanding the current market trends and how to get the best rates for your home loan.",
-      date: "March 15, 2024",
-      category: "Interest Rates",
-      image: "/modern-house-with-financial-charts-overlay.png",
-    },
-    {
-      id: 2,
-      title: "First-Time Home Buyer's Guide: Complete Checklist",
-      excerpt: "Everything you need to know before applying for your first home loan.",
-      date: "March 10, 2024",
-      category: "Home Buying",
-      image: "/young-couple-looking-at-house-plans.png",
-    },
-    {
-      id: 3,
-      title: "Balance Transfer vs Refinancing: Which is Better?",
-      excerpt: "Compare the benefits and drawbacks of balance transfer and refinancing options.",
-      date: "March 5, 2024",
-      category: "Refinancing",
-      image: "/calculator-and-documents-on-desk.png",
-    },
-    {
-      id: 4,
-      title: "Tax Benefits on Home Loans: Maximize Your Savings",
-      excerpt: "Learn about Section 80C and 24B deductions to save more on your home loan.",
-      date: "February 28, 2024",
-      category: "Tax Benefits",
-      image: "/tax-forms-and-calculator.png",
-    },
-    {
-      id: 5,
-      title: "Credit Score Impact on Home Loan Approval",
-      excerpt: "How your credit score affects your loan eligibility and interest rates.",
-      date: "February 20, 2024",
-      category: "Credit Score",
-      image: "/credit-score-report-with-house-icon.png",
-    },
-    {
-      id: 6,
-      title: "Pre-approved Home Loans: Advantages and Process",
-      excerpt: "Why getting pre-approved can give you an edge in the home buying process.",
-      date: "February 15, 2024",
-      category: "Pre-approval",
-      image: "/approved-stamp-on-loan-documents.png",
-    },
-  ]
+"use client"
+
+import { useMemo, useState } from "react"
+import { BLOG_POSTS } from "../components/data/blogs"
+import BlogCard from "../components/blogs/BlogCard"
+import { Link } from "react-router-dom"
+
+export default function BlogsPage() {
+  const [q, setQ] = useState("")
+
+  const filtered = useMemo(() => {
+    const query = q.trim().toLowerCase()
+    if (!query) return BLOG_POSTS
+    return BLOG_POSTS.filter(
+      (p) =>
+        p.title.toLowerCase().includes(query) ||
+        p.excerpt.toLowerCase().includes(query) ||
+        p.category.toLowerCase().includes(query),
+    )
+  }, [q])
+
+  const featured = filtered[0]
+  const sidePosts = filtered.slice(1, 3)
+  const recent = filtered.slice(0, 6)
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <h1 className="text-4xl font-bold text-center text-basic-dark mb-4">Home Loan Insights & Tips</h1>
-          <p className="text-center text-basic-gray mb-12">
-            Stay updated with the latest trends, tips, and guides for home loans
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogs.map((blog) => (
-              <article
-                key={blog.id}
-                className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
-              >
-                <img src={blog.image || "/placeholder.svg"} alt={blog.title} className="w-full h-48 object-cover" />
-
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="bg-basic-blue text-white px-3 py-1 rounded-full text-xs font-medium">
-                      {blog.category}
-                    </span>
-                    <span className="text-basic-gray text-sm">{blog.date}</span>
-                  </div>
-
-                  <h2 className="text-xl font-semibold text-basic-dark mb-3 line-clamp-2">{blog.title}</h2>
-
-                  <p className="text-basic-gray text-sm mb-4 line-clamp-3">{blog.excerpt}</p>
-
-                  <button className="text-basic-blue hover:text-blue-600 font-medium text-sm transition-colors">
-                    Read More →
-                  </button>
-                </div>
-              </article>
-            ))}
+    <div className="bg-white">
+      <section className="border-b border-neutral-200">
+        <div className="container mx-auto px-4 py-6">
+          <nav className="text-xs text-neutral-500">
+            Home / <span className="text-neutral-700">Blog</span>
+          </nav>
+          <div className="mt-2 flex items-center justify-between gap-4">
+            <h1 className="text-2xl md:text-3xl font-extrabold text-neutral-900">Featured</h1>
+            <input
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder="Search..."
+              className="w-48 md:w-64 rounded border border-neutral-300 px-3 py-2 text-sm"
+              aria-label="Search blog posts"
+            />
           </div>
 
-          <div className="text-center mt-12">
-            <button className="bg-basic-blue hover:bg-blue-600 text-white px-8 py-3 rounded font-medium transition-colors">
-              Load More Articles
-            </button>
+          {/* Featured block */}
+          <div className="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {featured ? (
+              <>
+                <Link
+                  to={`/blogs/${featured.slug}`}
+                  className="group relative rounded-md overflow-hidden border border-neutral-200 lg:col-span-2 bg-white"
+                >
+                  <img
+                    src={featured.image || "/placeholder.svg?height=280&width=1000&query=featured"}
+                    alt=""
+                    className="w-full h-60 md:h-72 object-cover"
+                  />
+                  <div className="p-4">
+                    <div className="flex items-center gap-2 text-[11px] text-neutral-500">
+                      <span className="uppercase tracking-wide">{featured.category}</span>
+                      <span>•</span>
+                      <span>{featured.date}</span>
+                      <span>•</span>
+                      <span>{featured.readTime}</span>
+                    </div>
+                    <h2 className="mt-2 text-lg md:text-xl font-semibold text-neutral-900 group-hover:text-blue-600">
+                      {featured.title}
+                    </h2>
+                    <p className="mt-1 text-sm text-neutral-600 line-clamp-2">{featured.excerpt}</p>
+                  </div>
+                </Link>
+
+                <div className="space-y-4">
+                  {sidePosts.map((p) => (
+                    <Link
+                      to={`/blogs/${p.slug}`}
+                      key={p.id}
+                      className="flex gap-3 rounded-md border border-neutral-200 bg-white p-3 hover:shadow-md transition-shadow"
+                    >
+                      <img
+                        src={p.image || "/placeholder.svg?height=88&width=120&query=post"}
+                        alt=""
+                        className="w-28 h-20 object-cover rounded"
+                      />
+                      <div className="min-w-0">
+                        <div className="text-[11px] text-neutral-500 uppercase tracking-wide">{p.category}</div>
+                        <div className="text-sm font-semibold text-neutral-900 line-clamp-2">{p.title}</div>
+                        <div className="mt-1 text-[11px] text-neutral-500">
+                          {p.date} • {p.readTime}
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <p className="text-neutral-600">No posts found.</p>
+            )}
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Recent posts */}
+      <section className="container mx-auto px-4 py-10">
+        <h2 className="text-xl font-extrabold text-neutral-900">Recent Posts</h2>
+        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {recent.map((p) => (
+            <BlogCard key={p.id} post={p} />
+          ))}
+        </div>
+      </section>
     </div>
   )
 }
-
-export default BlogsPage
