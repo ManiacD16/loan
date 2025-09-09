@@ -9,7 +9,7 @@ const HeroSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("[v0] Phone number submitted:", phoneNumber)
+    console.log(" Phone number submitted:", phoneNumber)
   }
 
   return (

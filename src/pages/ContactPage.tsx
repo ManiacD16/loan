@@ -17,7 +17,7 @@ export default function ContactPage() {
             className="rounded-md border border-neutral-200 p-4 bg-white w-full"
             onSubmit={(e) => {
               e.preventDefault()
-              console.log("[v0] Contact submit", form)
+              console.log(" Contact submit", form)
             }}
           >
             <h1 className="text-xl font-extrabold text-neutral-900">Reach out to us</h1>

@@ -5,7 +5,7 @@ import "./globals.css"
 export const metadata: Metadata = {
   title: "Basic Home Loan",
   description: "Making home loans simple and accessible for everyone",
-    generator: 'v0.app'
+    generator: 'manish'
 }
 
 export default function RootLayout({
