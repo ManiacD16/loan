@@ -17,18 +17,18 @@ const HeroSection = () => {
       <div 
         className="absolute inset-0 bg-center bg-cover md:hidden"
         style={{
-          backgroundImage: "url('/banner-1.jpeg')",
+          backgroundImage: "url('/banner-1.png')",
         }}
       />
       <div 
         className="absolute inset-0 hidden md:block bg-cover"
         style={{
-          backgroundImage: "url('/banner.jpeg')",
+          backgroundImage: "url('/banner.png')",
         }}
       />
       
       {/* Dark overlay for better text readability */}
-      {/* <div className="absolute inset-0 bg-neutral-900/70" /> */}
+      <div className="absolute inset-0 bg-neutral-900/40" />
 
       <div className="relative container mx-auto px-4">
         <div className="min-h-[560px] grid grid-cols-1 lg:grid-cols-2 items-center gap-8">
